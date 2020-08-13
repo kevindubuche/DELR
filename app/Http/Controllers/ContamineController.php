@@ -11,6 +11,10 @@ use Flash;
 use Response;
 
 use App\Models\Contamine;
+use App\Models\Epidemiologiste;
+
+use App\Mail\NewContamineNotification;
+use Illuminate\Support\Facades\Mail;
 class ContamineController extends AppBaseController
 {
     /** @var  ContamineRepository */
@@ -60,6 +64,57 @@ class ContamineController extends AppBaseController
         $contamine = $this->contamineRepository->create($input);
 
         Flash::success('Contaminé enregistré.');
+
+        $totalContamines = Contamine::get()->count();
+        $institution = $input['institution'];
+
+
+//####################################3
+
+    
+//#################################333
+
+
+         
+           
+    //   $sendmail=  Mail::send([], [], function ($message) 
+    // //   use ($request)
+    //   {
+    //         $message->to('kevin.dubuche@student.ueh.edu.ht')
+    //           ->subject('Il y a un nouveau cas de COVID-19 dans l’institution $X')
+    //           // here comes what you want
+    //           ->setFrom(['kevindubuche@gmail.com' => 'John Doe'])
+    //           ->setBody('test msg'); // assuming text/plain
+    //       });
+
+
+
+            // if (empty($sendmail)) {
+            //     return response()->json(['message' => 'Mail Sent Sucssfully'], 200);
+            // }else{
+            //     return response()->json(['message' => 'Mail Sent fail'], 400);
+            // }
+        // }
+        // $sendNotification= sendEmail($request);
+
+        //SEND EMAIL*****************************************
+        
+            $objDemo = new \stdClass();
+            $objDemo->totalContamines = $totalContamines;
+            $objDemo->institution = $institution;
+            
+            // $objDemo->demo_two = 'Demo Two Value';
+            // $objDemo->sender = 'SenderUserName';
+            // $objDemo->receiver = 'ReceiverUserName';
+            $epidemiologistes = Epidemiologiste::all();
+            foreach($epidemiologistes as  $epidemiologiste){
+                $objDemo->receiver = $epidemiologiste->nom.' '.$epidemiologiste->prenom;
+                Mail::to($epidemiologiste->email)->send(new NewContamineNotification($objDemo));
+            }
+            
+        // }
+        // $sendNotification= send();
+        //FIN SEND EMAIL*****************************************
 
         return redirect(route('contamines.index'));
     }
@@ -191,7 +246,7 @@ class ContamineController extends AppBaseController
                 $row['Adresse']  = $contamine->adresse;
                 $row['Institution']  = $contamine->institution;
                 $row['Téléphone']  = $contamine->telephone;
-                $row['Date de création']  = $contamine->created_at->format('d-m-yyyy');
+                $row['Date de création']  = $contamine->created_at->format('d-m-y');
 
                 fputcsv($file, array($row['Nom'], $row['Prénom'], $row['Sexe'], $row['Commune'], $row['Département'], $row['Adresse'], $row['Institution'], $row['Téléphone'], $row['Date de création']));
             }

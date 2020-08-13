@@ -9,8 +9,11 @@
         <th>Commune</th>
         <th>Département</th>
         <th>Adresse</th>
-        <th>Institution</th>
         <th>Téléphone</th>
+        <th>Institution</th>
+        <th>Ajouté le</th>
+        
+        
                 <th >Action</th>
             </tr>
         </thead>
@@ -27,8 +30,10 @@
             <td>{{ $contamine->commune }}</td>
             <td>{{ $contamine->departement }}</td>
             <td>{{ $contamine->adresse }}</td>
-            <td>{{ $contamine->institution }}</td>
             <td>{{ $contamine->telephone }}</td>
+            <td>{{ $contamine->institution }}</td>
+            <td>{{ $contamine->created_at }}</td>
+      
                 <td>
                     {!! Form::open(['route' => ['contamines.destroy', $contamine->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>

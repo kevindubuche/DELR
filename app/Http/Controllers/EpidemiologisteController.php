@@ -149,6 +149,7 @@ class EpidemiologisteController extends AppBaseController
      */
     public function edit($id)
     {
+        
         $epidemiologiste = $this->epidemiologisteRepository->find($id);
 
         if (empty($epidemiologiste)) {
@@ -158,6 +159,7 @@ class EpidemiologisteController extends AppBaseController
         }
 
         return view('epidemiologistes.edit')->with('epidemiologiste', $epidemiologiste);
+    
     }
 
     /**
@@ -170,7 +172,7 @@ class EpidemiologisteController extends AppBaseController
      */
     public function update($id, UpdateEpidemiologisteRequest $request)
     {
-        // try{
+         try{
         $epidemiologiste = $this->epidemiologisteRepository->find($id);
 
         //NAP SAVE USER A AVAN POU SI EMAIL LA TA DUPLIKE POU LI GENTAN EXIT
@@ -214,11 +216,11 @@ class EpidemiologisteController extends AppBaseController
         Flash::success('Epidémiologiste modifié avec succès.');
 
         return redirect(route('epidemiologistes.index'));
-    // }catch(\Illuminate\Database\QueryException $e){
-    //     //if email  exist before in db redirect with error messages
-    //     Flash::error('Email ou username existant');
-    //     return redirect(route('epidemiologistes.index'));
-    //    }
+    }catch(\Illuminate\Database\QueryException $e){
+        //if email  exist before in db redirect with error messages
+        Flash::error('Email ou username existant');
+        return redirect(route('epidemiologistes.index'));
+       }
     }
 
     /**
