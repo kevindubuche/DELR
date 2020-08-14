@@ -69,7 +69,7 @@ class EpidemiologisteController extends AppBaseController
             $user->username = $request->username;
             $user->role = 2;
             $user->email = $request->email;
-            $password = 'qwerty123';//nou ka genere yon ran si nou vle
+            $password = $request->password;//nou ka genere yon ran si nou vle
             $user->password = Hash::make( $password);
             $save =$user->save();
             $user_id =DB::getPdo()->lastInsertId();
@@ -180,7 +180,8 @@ class EpidemiologisteController extends AppBaseController
             'nom' => $request->nom,
             'prenom' => $request->prenom,
             'email' => $request->email, 
-            'username' => $request->username      
+            'username' => $request->username,
+            'password' => Hash::make( $request->password)
             
         );
         User::findOrFail($epidemiologiste->user_id)->update($user);

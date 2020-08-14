@@ -69,7 +69,7 @@ class DataclerkController extends AppBaseController
         $user->username = $request->username;
         $user->role = 1;
         $user->email = $request->email;
-        $password = 'qwerty123';//nou ka genere yon ran si nou vle
+        $password = $request->password;//nou ka genere yon ran si nou vle
         $user->password = Hash::make( $password);
         $save =$user->save();
         $user_id =DB::getPdo()->lastInsertId();
@@ -178,7 +178,8 @@ class DataclerkController extends AppBaseController
             'nom' => $request->nom,
             'prenom' => $request->prenom,
             'email' => $request->email, 
-            'username' => $request->username      
+            'username' => $request->username,
+            'password' => Hash::make( $request->password)     
             
         );
         User::findOrFail($dataclerk->user_id)->update($user);

@@ -50,6 +50,12 @@
     <p>{{ $contamine->telephone }}</p>
 </div>
 
+<!-- Creer par -->
+<div class="form-group">
+    {!! Form::label('created_by', 'Ajouté par:') !!}
+    <p>{{ $contamine->GetUser($contamine->created_by)->nom }} {{ $contamine->GetUser($contamine->created_by)->prenom }}</p>
+</div>
+
 <!-- Creer Field -->
 <div class="form-group">
     {!! Form::label('created_at', 'Créé le:') !!}
@@ -61,4 +67,3 @@
     {!! Form::label('updated_at', 'Modifié le:') !!}
     <p>{{ $contamine->updated_at }}</p>
 </div>
-

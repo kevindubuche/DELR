@@ -23,6 +23,7 @@ class CreateContaminesTable extends Migration
             $table->string('adresse');
             $table->string('institution');
             $table->string('telephone');
+            $table->integer('created_by');
             $table->softDeletes();
             $table->timestamps();
         });

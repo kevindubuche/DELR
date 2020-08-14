@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
+use App\User;
 /**
  * Class Contamine
  * @package App\Models
@@ -41,7 +41,8 @@ class Contamine extends Model
         'departement',
         'adresse',
         'institution',
-        'telephone'
+        'telephone',
+        'created_by'
     ];
 
     /**
@@ -58,7 +59,8 @@ class Contamine extends Model
         'departement' => 'string',
         'adresse' => 'string',
         'institution' => 'string',
-        'telephone' => 'string'
+        'telephone' => 'string',
+        'created_by' =>'integer'
     ];
 
     /**
@@ -75,10 +77,20 @@ class Contamine extends Model
         'adresse' => 'required|string|max:191',
         'institution' => 'required|string|max:191',
         'telephone' => 'required|string|max:191',
+        'created_by' => 'required',
         'deleted_at' => 'nullable',
         'created_at' => 'nullable',
         'updated_at' => 'nullable'
     ];
+
+    public  function GetUser($id){
+
+        $user = User::where('users.id',$id)
+           ->first();
+       
+       return $user;
+    }
+
 
     
 }

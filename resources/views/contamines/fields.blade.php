@@ -1,3 +1,5 @@
+<input type="hidden" name="created_by" id="created_by" value=" {{ Auth::user()->id }}" >
+
 <!-- Nom Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('nom', 'Nom:') !!}
@@ -29,7 +31,7 @@
 <!-- Departement Field -->
 <div class="form-group col-sm-6">
     <label>Départément</label>
-    <select class="form-control" name="departement" id="departement" required>
+    <select class="form-control" name="departement" id="departement" required >
         <option value="0" selected="false" disabled="true">Choisir départément</option>
         <option value="Artibonite">Artibonite</option>
         <option value="Centre">Centre</option>

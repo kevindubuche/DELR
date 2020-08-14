@@ -13,8 +13,9 @@
         <th>Institution</th>
         <th>Ajouté le</th>
         
-        
+        @if(Auth::user()->role != 2)
                 <th >Action</th>
+        @endif
             </tr>
         </thead>
         <tbody>
@@ -33,7 +34,7 @@
             <td>{{ $contamine->telephone }}</td>
             <td>{{ $contamine->institution }}</td>
             <td>{{ $contamine->created_at }}</td>
-      
+            @if(Auth::user()->role != 2)
                 <td>
                     {!! Form::open(['route' => ['contamines.destroy', $contamine->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>
@@ -43,6 +44,7 @@
                     </div>
                     {!! Form::close() !!}
                 </td>
+            @endif
             </tr>
         @endforeach
         </tbody>

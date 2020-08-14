@@ -35,7 +35,7 @@
 </head>
 <body class="hold-transition login-page" 
         style=
-        "  background: linear-gradient(rgba(255,255,255,.8), rgba(26, 255, 121, 0.8)), url({{url('images/logo.png')}});">
+        "  background: linear-gradient(rgba(255,255,255,.8), rgba(221, 248, 232, 0.8)), url({{url('images/logo.png')}});">
 <div class="login-box">
     <div class="login-logo">
         <a href="{{ url('/home') }}" style="color: blue"><b style="color: green">MSPP </b><b>DELR</b></a>
@@ -72,20 +72,20 @@
                 <div class="col-xs-8">
                     <div class="checkbox icheck">
                         <label>
-                            <input type="checkbox" name="remember"> Remember Me
+                            <input type="checkbox" name="remember"> Rester connecté
                         </label>
                     </div>
                 </div>
                 <!-- /.col -->
                 <div class="col-xs-4">
-                    <button type="submit" class="btn btn-success btn-block btn-flat">Sign In</button>
+                    <button type="submit" class="btn btn-success btn-block btn-flat">Connection</button>
                 </div>
                 <!-- /.col -->
             </div>
         </form>
 
-        <a href="{{ url('/password/reset') }}">I forgot my password</a><br>
-        <a href="{{ url('/register') }}" class="text-center">Register a new membership</a>
+        <a href="{{ url('/password/reset') }}">Mot de passe oublié</a><br>
+        {{-- <a href="{{ url('/register') }}" class="text-center">Register a new membership</a> --}}
 
     </div>
     <!-- /.login-box-body -->

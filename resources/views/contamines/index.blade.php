@@ -3,9 +3,11 @@
 @section('content')
     <section class="content-header">
         <h1 class="pull-left">Contaminés</h1>
-        <h1 class="pull-right">
-           <a class="btn btn-success btn-lg pull-right" style="margin-top: -10px;margin-bottom: 5px; border-radius:30px;"  href="{{ route('contamines.create') }}"><i class="fa fa-plus-circle"></i></a>
-        </h1>
+        @if(Auth::user()->role != 2)
+            <h1 class="pull-right">
+            <a class="btn btn-success btn-lg pull-right" style="margin-top: -10px;margin-bottom: 5px; border-radius:30px;"  href="{{ route('contamines.create') }}"><i class="fa fa-plus-circle"></i></a>
+            </h1>
+        @endif
           {{-- Bouton PDF --}}
           <div class="btn btn-group" style="margin-top:20px, float:left; margin-right:25px">
             <button type="button" class="btn btn-sm btn-success"><i class="fa fa-file-excel-o" style="color:white"></i> CSV</button>

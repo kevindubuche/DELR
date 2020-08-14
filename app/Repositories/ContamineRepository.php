@@ -24,7 +24,8 @@ class ContamineRepository extends BaseRepository
         'departement',
         'adresse',
         'institution',
-        'telephone'
+        'telephone',
+        'created_by'
     ];
 
     /**

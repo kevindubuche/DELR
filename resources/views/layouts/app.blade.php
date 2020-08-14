@@ -47,6 +47,21 @@ style="background-color: rgb(253, 253, 253);">
                 <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
                     <span class="sr-only">Toggle navigation</span>
                 </a>
+                <p style="color: black">
+                    <small>
+                        @switch(Auth::user()->role)
+                            @case(0)
+                                <h5>Administrateur</h5>
+                                @break
+                            @case(1)
+                                <h5>Dataclerk</h5>
+                                @break
+                            @case(2)
+                                <h5>Epidémiologiste</h5>
+                            @break
+                        @endswitch
+                    </small>
+                </p>
                 <!-- Navbar Right Menu -->
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
@@ -55,16 +70,26 @@ style="background-color: rgb(253, 253, 253);">
                             <!-- Menu Toggle Button -->
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <!-- The user image in the navbar-->
-                                <img src="{{asset('images/logo.png')}}"
-                                     class="user-image" alt="User Image"/>
+                               
+
+                                     @if (Auth::user()->role !=0)
+                                     <img src="{{asset('user_images/'.Auth::user()->GetUser(Auth::user()->role,Auth::user()->id)->image)}}" class="user-image" alt="User Image">
+                                       @else
+                                     <img src="{{asset('user_images/defaultAvatar.png')}}" class="user-image"
+                                     alt="User Image"/>
+                                     @endif
                                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
                                 <span class="hidden-xs">{{ Auth::user()->nom }} {{ Auth::user()->prenom }}</span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- The user image in the menu -->
                                 <li class="user-header" >
-                                    <img src="{{asset('images/logo.png')}}"
-                                         class="img-circle" alt="User Image"/>
+                                    @if (Auth::user()->role !=0)
+                                    <img src="{{asset('user_images/'.Auth::user()->GetUser(Auth::user()->role,Auth::user()->id)->image)}}" class="img-circle" alt="User Image">
+                                     @else
+                                    <img src="{{asset('user_images/defaultAvatar.png')}}" class="img-circle"
+                                    alt="User Image"/>
+                                    @endif
                                     <p style="color: black">
                                         {{ Auth::user()->nom }} {{ Auth::user()->prenom }}
                                         <small>
@@ -107,7 +132,10 @@ style="background-color: rgb(253, 253, 253);">
         <!-- Left side column. contains the logo and sidebar -->
         @include('layouts.sidebar')
         <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
+        <div class="content-wrapper"
+        style=
+        "  background: linear-gradient(rgba(255,255,255,.8), rgba(221, 248, 232, 0.8)), url({{url('images/logo.png')}}); ">
+        <hr>
             @yield('content')
         </div>
 

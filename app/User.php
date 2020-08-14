@@ -36,4 +36,20 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public  function GetUser($role, $id){
+        $dataclerk = User::join('dataclerks', 'dataclerks.user_id','=', 'users.id')
+                    ->where('users.id',$id)
+                    ->first();
+      $epidemiologiste = User::join('epidemiologistes', 'epidemiologistes.user_id','=', 'users.id')
+                   ->where('users.id',$id)
+                   ->first();
+
+        if ($role == 1){
+            
+            return $dataclerk;
+        }
+       
+       return $epidemiologiste;
+    }
 }

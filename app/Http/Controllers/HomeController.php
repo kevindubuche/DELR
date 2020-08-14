@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\Dataclerk;
+use App\Models\Epidemiologiste;
+use App\Models\Contamine;
+
 class HomeController extends Controller
 {
     /**
@@ -23,6 +27,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $totalDataclerks = Dataclerk::get()->count();
+        $totalEpidemiologistes = Epidemiologiste::get()->count();
+        $totalContamines = Contamine::get()->count();
+        return view('home', compact('totalDataclerks','totalEpidemiologistes','totalContamines'));
     }
 }

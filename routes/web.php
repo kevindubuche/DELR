@@ -16,6 +16,10 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+
+Auth::routes();
+Route::group(['middleware' => ['auth']], function(){
+
 Route::get('/', 'HomeController@index');
 
 
@@ -28,16 +32,18 @@ Route::get('/', 'HomeController@index');
 
 // Route::get('/home', 'HomeController@index')->middleware('verified');
 
-Auth::routes();
+
 
 Route::get('/home', 'HomeController@index'); 
 
-Route::resource('dataclerks', 'DataclerkController');
+Route::resource('dataclerks', 'DataclerkController')->middleware('IfAdm');;
 
-Route::resource('epidemiologistes', 'EpidemiologisteController');
+Route::resource('epidemiologistes', 'EpidemiologisteController')->middleware('IfAdm');;
 
 Route::resource('contamines', 'ContamineController');
 
 
 //export csv
 Route::get('download-csv-contamines', 'ContamineController@exportCsv');
+
+});

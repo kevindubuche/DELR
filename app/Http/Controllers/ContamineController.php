@@ -12,6 +12,7 @@ use Response;
 
 use App\Models\Contamine;
 use App\Models\Epidemiologiste;
+use Exception ;
 
 use App\Mail\NewContamineNotification;
 use Illuminate\Support\Facades\Mail;
@@ -59,6 +60,7 @@ class ContamineController extends AppBaseController
      */
     public function store(CreateContamineRequest $request)
     {
+        try{
         $input = $request->all();
 
         $contamine = $this->contamineRepository->create($input);
@@ -68,34 +70,6 @@ class ContamineController extends AppBaseController
         $totalContamines = Contamine::get()->count();
         $institution = $input['institution'];
 
-
-//####################################3
-
-    
-//#################################333
-
-
-         
-           
-    //   $sendmail=  Mail::send([], [], function ($message) 
-    // //   use ($request)
-    //   {
-    //         $message->to('kevin.dubuche@student.ueh.edu.ht')
-    //           ->subject('Il y a un nouveau cas de COVID-19 dans l’institution $X')
-    //           // here comes what you want
-    //           ->setFrom(['kevindubuche@gmail.com' => 'John Doe'])
-    //           ->setBody('test msg'); // assuming text/plain
-    //       });
-
-
-
-            // if (empty($sendmail)) {
-            //     return response()->json(['message' => 'Mail Sent Sucssfully'], 200);
-            // }else{
-            //     return response()->json(['message' => 'Mail Sent fail'], 400);
-            // }
-        // }
-        // $sendNotification= sendEmail($request);
 
         //SEND EMAIL*****************************************
         
@@ -112,11 +86,14 @@ class ContamineController extends AppBaseController
                 Mail::to($epidemiologiste->email)->send(new NewContamineNotification($objDemo));
             }
             
-        // }
-        // $sendNotification= send();
         //FIN SEND EMAIL*****************************************
 
         return redirect(route('contamines.index'));
+        }catch(\Exception  $e){
+            //if email  exist before in db redirect with error messages
+            Flash::error('Erreur de connecction. Notification non envoyé');
+            return redirect(route('contamines.index'));
+           }
     }
 
     /**

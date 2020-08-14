@@ -1,3 +1,4 @@
+<input type="hidden" id="created_by" name="created_by" value="{{$contamine->created_by}}">
 <!-- Nom Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('nom', 'Nom:') !!}
