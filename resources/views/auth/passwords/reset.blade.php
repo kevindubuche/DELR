@@ -32,10 +32,12 @@
     <![endif]-->
 
 </head>
-<body class="hold-transition login-page">
+<body class="hold-transition login-page"
+style=
+"  background: linear-gradient(rgba(255,255,255,.8), rgba(221, 248, 232, 0.8)), url({{url('images/logo.png')}});">
 <div class="login-box">
     <div class="login-logo">
-        <a href="{{ url('/home') }}"><b>InfyOm </b>Generator</a>
+        <a href="{{ url('/home') }}" style="color: blue"><b style="color: green">MSPP </b><b>DELR</b></a>
     </div>
 
     <!-- /.login-logo -->

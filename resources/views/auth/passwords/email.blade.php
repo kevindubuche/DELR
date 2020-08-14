@@ -32,15 +32,17 @@
     <![endif]-->
 
 </head>
-<body class="hold-transition login-page">
+<body class="hold-transition login-page"
+style=
+"  background: linear-gradient(rgba(255,255,255,.8), rgba(221, 248, 232, 0.8)), url({{url('images/logo.png')}});">
 <div class="login-box">
     <div class="login-logo">
-        <a href="{{ url('/home') }}"><b>InfyOm </b>Generator</a>
+        <a href="{{ url('/home') }}" style="color: blue"><b style="color: green">MSPP </b><b>DELR</b></a>
     </div>
 
     <!-- /.login-logo -->
     <div class="login-box-body">
-        <p class="login-box-msg">Enter Email to reset password</p>
+        <p class="login-box-msg">Entrer votre email</p>
 
         @if (session('status'))
             <div class="alert alert-success">
@@ -64,7 +66,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <button type="submit" class="btn btn-primary pull-right">
-                        <i class="fa fa-btn fa-envelope"></i> Send Password Reset Link
+                        <i class="fa fa-btn fa-envelope"></i> Envoyer lien
                     </button>
                 </div>
             </div>
