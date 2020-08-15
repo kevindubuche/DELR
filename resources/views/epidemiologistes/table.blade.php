@@ -26,7 +26,7 @@
             <td>{{ $epidemiologiste->email }}</td>
             <td>{{ $epidemiologiste->username }}</td>
             <td>{{ $epidemiologiste->telephone }}</td>
-            <td>@if($epidemiologiste->email ==0)Masculin @else Féminin @endif </td>
+            <td>@if($epidemiologiste->sexe ==0)Masculin @else Féminin @endif </td>
            
                 <td>
                     {!! Form::open(['route' => ['epidemiologistes.destroy', $epidemiologiste->id], 'method' => 'delete']) !!}

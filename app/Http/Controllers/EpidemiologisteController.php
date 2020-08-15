@@ -236,16 +236,22 @@ class EpidemiologisteController extends AppBaseController
     public function destroy($id)
     {
         $epidemiologiste = $this->epidemiologisteRepository->find($id);
+         //on supprime l'utilisateur
+         User::findOrFail($epidemiologiste->user_id)->forcedelete();
 
         if (empty($epidemiologiste)) {
-            Flash::error('Epidemiologiste not found');
+            Flash::error('Epidemiologiste introuvable');
 
             return redirect(route('epidemiologistes.index'));
         }
+        //REMOVE THE IMAGE FROM THE teacher_images FOLDER
+        if( $epidemiologiste->image !='defaultAvatar.png' ){
+            File::delete(public_path().'/user_images/'.$epidemiologiste->image);
+            }
 
-        $this->epidemiologisteRepository->delete($id);
-
-        Flash::success('Epidemiologiste deleted successfully.');
+        // $this->epidemiologisteRepository->delete($id);
+        $epidemiologiste->forcedelete($id);
+        Flash::success('Epidemiologiste supprimé avec succès.');
 
         return redirect(route('epidemiologistes.index'));
     }

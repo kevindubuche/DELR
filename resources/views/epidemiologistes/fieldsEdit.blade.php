@@ -47,8 +47,8 @@
     <label>Sexe</label>
     <select class="form-control" name="sexe" id="sexe" required>
         <option value="0" selected="false" disabled="true">Choisir sexe</option>
-        <option value="1" @if($epidemiologiste->sexe==0) selected="true" @endif>Masculin</option>
-        <option value="0" @if($epidemiologiste->sexe==1) selected="true" @endif>Féminim</option>
+        <option value="0" @if($epidemiologiste->sexe==0) selected="true" @endif>Masculin</option>
+        <option value="1" @if($epidemiologiste->sexe==1) selected="true" @endif>Féminim</option>
     </select>
 </div>
 

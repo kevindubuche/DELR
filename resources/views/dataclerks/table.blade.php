@@ -24,7 +24,7 @@
             <td>{{ $dataclerk->prenom }}</td>
             <td>{{ $dataclerk->email }}</td>
             <td>{{ $dataclerk->username }}</td>
-            <td>@if($dataclerk->email ==0)Masculin @else Féminin @endif </td>
+            <td>@if($dataclerk->sexe ==0)Masculin @else Féminin @endif </td>
                 <td>
                     {!! Form::open(['route' => ['dataclerks.destroy', $dataclerk->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>
